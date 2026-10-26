@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmCo - NS</title>
+    
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video Card</title>
+<style>
+body {
+  background-image: url('images/meat-cropped.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* center the card on the page */
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 500 x 500 square, split top / bottom */
+.card {
+  width: 500px;
+  height: 500px;
+  flex: none;
+  box-sizing: border-box;
+  border: 4px solid #ff0000; /* bright red border */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.85);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* TOP HALF: 16:9 video (500px wide -> ~281px tall) */
+.video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex: none;
+  background: #000;
+}
+
+.video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* WHITE LINE between the two halves */
+.divider {
+  height: 2px;
+  flex: none;
+  background: #fff;
+}
+
+/* BOTTOM HALF: title + description */
+.info {
+  flex: 1;
+  min-height: 0;
+  padding: 14px 18px;
+  color: #fff;
+  overflow-y: auto;
+}
+
+.info h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.info p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="video">
+      <iframe
+        id="player"
+        title="Video player"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <h2 id="video-title"></h2>
+      <p id="video-description"></p>
+    </div>
+  </div>
+
+<script>
+/* ------------------------------------------------------------
+   HOW IT WORKS
+   watch?id=1  ->  the iframe loads the src (web address) of entry "1" below
+                   title + description come from the list below.
+
+   To add a video:
+     1. Host the video on the web (use a direct link to the video)
+     2. Add an entry with that id below and paste the video's address in src.
+   ------------------------------------------------------------ */
+const VIDEO_BASE_URL = ""; // optional: if all videos share one web folder, put it here (must end with /), e.g. "https://example.com/videos/"
+const VIDEO_EXT = ".mp4";
+const DEFAULT_ID = "1"; // used when the URL has no ?id=
+
+const videos = {
+  "1":  { title: "Pilot",  description: "S1 E1", src: "https://files.catbox.moe/1gr8r1.mp4" },
+  "2":  { title: "Neutral Strawberry Meets Joyful Plum",  description: "S1 E2", src: "https://files.catbox.moe/x7jbsl.mp4" },
+  "3":  { title: "three",  description: "S1 E3", src: "https://files.catbox.moe/tvbkj6.mp4" },
+  "4":  { title: "???",  description: "S1 E3.5", src: "https://files.catbox.moe/lwbxld.mp4" },
+  "5":  { title: "???",  description: "S1 E4 (Definitive Edition)", src: "https://files.catbox.moe/6dyso2.mp4" },
+  "6":  { title: "???",  description: "S1 E4.5", src: "https://files.catbox.moe/w2ir2i.mp4" },
+  "7":  { title: "The Neutral Strawberry Semi-Finale",  description: "S1 E4.75", src: "https://files.catbox.moe/3zpsl5.mp4" },
+  "8":  { title: "The Neutral Strawberry Grand Finale",  description: "S1 E5", src: "https://ajxbhgmnzcmnkbzw.public.blob.vercel-storage.com/neutral-strawberry/8.mp4" },
+  "9":  { title: "four",  description: "THIS EPISODE IS NO LONGER CANON TO THE SERIES", src: "https://files.catbox.moe/3y55hb.mp4" },
+  "10": { title: "five",  description: "THIS EPISODE IS NO LONGER CANON TO THE SERIES", src: "https://ajxbhgmnzcmnkbzw.public.blob.vercel-storage.com/neutral-strawberry/10.mp4" },
+  "11": { title: "(the) shitful strawberry cessation", description: "THIS EPISODE IS NOT CANON TO THE SERIES, IT WAS ONLY MADE AS A QUICK CONCLUSION TO THE SERIES.", src: "https://ajxbhgmnzcmnkbzw.public.blob.vercel-storage.com/neutral-strawberry/11.mp4" },
+  "12": { title: "A Special Announcement From Neutral Strawberry!", description: "This Video Is Not Canon To The Series, It Is A Celabratory Video For Reaching The Milestone Of 50 Followers On TikTok.", src: "https://files.catbox.moe/clfbfj.mp4" },
+  "13": { title: "Neutral Strawberry Has Another Special Announcement!", description: "This Video Is Not Canon To The Series, It Is A Celabratory Video For Reaching The Milestone Of 100 Followers On TikTok.", src: "https://files.catbox.moe/huzwyq.mp4" },
+  "14": { title: "Test (i regret making this)", description: "THIS VIDEO HAS BARELY ANYTHING TO DO WITH NEUTRAL STRAWBERRY, IT WAS UPLOADED TO THE NEUTRAL STRAWBERRY ACCOUNT BECUASE THERE WAS A UPLOADING ISSUE ON THE TIKTOK WEBSITE.", src: "https://files.catbox.moe/97ni0y.mp4" },
+  "15": { title: "Neutral Strawberry's 3rd Announcement!", description: "This Video Is Not Canon To The Series, It Is A Celabratory Video For Reaching The Milestone Of 300 Followers On TikTok.", src: "https://files.catbox.moe/abc01m.mp4" },
+  "16": { title: "Neutral Strawberry Episode 3 Trailer", description: "This Video Is Not Canon To The Series, It Is A Trailer For Episode 3.", src: "https://files.catbox.moe/ya1ffx.mp4" },
+  "17": { title: "Neutral Strawberry Is Returning, But Only Until April 25th. It's Because Of The Sora Shutdown.", description: "This Video Was A Announcement For The Continuation Of Neutral Strawberry", src: "https://files.catbox.moe/y741v2.mp4" },
+  "18": { title: "a final announcement.", description: "This Video Is A Announcement For The Cancellation Of Neutral Strawberry The True Grand Finale Which Was A Planned Definitive Finale For Neutral Strawberry That Got Cancelled Because Of Creators Block", src: "https://files.catbox.moe/85dful.mp4" },
+  // src = that video's web address (paste it between the quotes).
+  // If src is blank, VIDEO_BASE_URL + <id>.mp4 is used instead (only if you set VIDEO_BASE_URL above).
+};
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id") || DEFAULT_ID;
+const video = videos[id];
+
+const player = document.getElementById("player");
+const titleEl = document.getElementById("video-title");
+const descEl = document.getElementById("video-description");
+
+if (video) {
+  const videoSrc = video.src || (VIDEO_BASE_URL ? VIDEO_BASE_URL + id + VIDEO_EXT : "");
+  if (videoSrc) player.src = videoSrc;
+  titleEl.textContent = video.title;
+  descEl.textContent = video.description;
+  document.title = video.title;
+} else {
+  // unknown id
+  titleEl.textContent = "Video not found";
+  descEl.textContent = "There is no video with the id \"" + id + "\".";
+  document.title = "Video not found";
+}
+</script>
+
+</body>
+</html>

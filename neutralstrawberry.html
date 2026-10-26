@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmCo - NS</title>
+    <style>
+        /* ---------- General ---------- */
+        body {
+            background-image: url('images/meat-cropped.png');
+            color: #ffffff;
+            text-align: center;
+        }
+
+        h1,
+        h2 {
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* keeps it readable over the background image */
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2em;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        /* ---------- Navbar ---------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.55);
+            border-bottom: 1px solid rgb(0, 255, 55);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding-left: 20px;
+            padding-right: 20px;
+            box-sizing: border-box;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-right {
+            margin-right: 0;
+            padding-right: 0;
+        }
+
+        span {
+            background: linear-gradient(to bottom, #e3e3e3, #eeeeee);
+            margin: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid rgb(0, 255, 55);
+            padding: 2px;
+        }
+
+        .manual-link {
+            align-items: center;
+        }
+
+        .SelectedTab {
+            border: 3px solid rgb(0, 255, 55);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ---------- Videos ---------- */
+        /* Each section is a centered row of boxes that wraps onto new lines */
+        .videos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .video-box {
+            width: 200px;
+            height: auto;
+            border-radius: 7px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.55);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 8px;
+        }
+
+        .cover {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 7px 7px 0 0;
+            display: block;
+        }
+
+        .video-title {
+            color: #ffffff;
+            padding: 8px 8px 0;
+        }
+
+        .video-author {
+            font-size: 0.9em;
+            color: #d0d0d0;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- NavBar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="navigation.html"><img src="images/logo.png" height="40px"></a>
+            <span><a onclick="tba()">Main</a></span>
+            <span class="SelectedTab"><a href="neutralstrawberry.html">Episodes</a></span>
+            <span><a onclick="tba()">Characters</a></span>
+        </div>
+        <span class="navbar-right manual-link"><a onclick="tba()">TBA</a></span>
+    </div>
+
+    <!-- title -->
+    <div class="title"><img src="images/" height="47px"> <h2></h2></div>
+
+    <!-- ===================== Canon ===================== -->
+    <h1>Canon Episodes:</h1>
+    <div class="videos canon">
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=1">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">Pilot</div>
+            <div class="video-author">S1 E1</div>
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=2">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">Neutral Strawberry Meets Joyful Plum</div>
+            <div class="video-author">S1 E2</div>
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=3">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">three</div>
+            <div class="video-author">S1 E3</div>
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=4">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">???</div>
+            <div class="video-author">S1 E3.5</div>
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=5">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">???</div>
+            <div class="video-author">S1 E4 (Definitive Edition) </div>
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=6">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">???</div>
+            <div class="video-author">S1 E4.5</div>
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=7">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">The Neutral Strawberry Semi-Finale</div>
+            <div class="video-author">S1 E4.75</div>
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=8">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">The Neutral Strawberry Grand Finale</div>
+            <div class="video-author">S1 E5</div>
+        </div>
+
+    </div>
+
+    <!-- ===================== Non-Canon ===================== -->
+    <h1>Non-Canon Episodes:</h1>
+    <div class="videos not-canon">
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=9">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">four</div>
+            <div class="video-author">S1 E4 (NON-CANON)</div>
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=10">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">five</div>
+            <div class="video-author">S1 E5 (NON-CANON)</div>
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=11">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">(the) shitful strawberry cessation</div>
+            <div class="video-author">???</div>
+        </div>
+
+    </div>
+
+    <!-- ===================== Special ===================== -->
+    <h1>Special Videos:</h1>
+    <div class="videos special">
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=12">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">A Special Announcement From Neutral Strawberry!</div>
+            
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=13">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">Neutral Strawberry Has Another Special Announcement!</div>
+            
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=14">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">Test (i regret making this)</div>
+            
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=15">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">Neutral Strawberry's 3rd Announcement!</div>
+            
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=16">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">Neutral Strawberry Episode 3 Trailer</div>
+            
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=17">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">Neutral Strawberry Is Returning, But Only Until April 25th. It's Because Of The Sora Shutdown.</div>
+            
+        </div>
+
+        <div class="video-box">
+            <a href="watchneutralstrawberry.html?id=18">
+                <img src="images/placeholder-thumbnail.png" class="cover">
+            </a>
+            <div class="video-title">a final announcement.</div>
+            
+        </div>
+
+    </div>
+
+<script>
+function wip() {
+ alert("This Feature Is Still A Work In Progress")
+}
+function tba() {
+ alert("This Feature Will Come In A Future Update")
+}
+
+</script>
+</body>
+</html>

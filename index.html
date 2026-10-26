@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EmeraldCompany | Websites and apps built to be noticed</title>
+<meta name="description" content="EmeraldCompany is a small web studio. We design, build and launch websites and web apps, then keep them running well.">
+<meta name="theme-color" content="#00FF00">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EmeraldCompany | Websites and apps built to be noticed">
+<meta property="og:description" content="A small web studio that designs, builds and launches websites and web apps, then keeps them running well.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preload" as="image" href="images/hero-lattice.webp" type="image/webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona+One&family=Rubik:wght@400;500;600&display=swap">
+<style>
+  :root {
+    /* Colors come straight from the logo and background artwork. */
+    --lime: #00FF00;
+    --ink: #000000;
+    --white: #FFFFFF;
+    --text-muted: #262626;
+
+    --bw: 4px;                       /* the logo's outline weight, reused as the border weight */
+    --shadow: 0 8px 0 var(--ink);    /* hard drop shadow, straight down so centered blocks stay balanced */
+
+    --display: "Krona One", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+    --body: "Rubik", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+    --step-0: 1.0625rem;
+    --step-1: clamp(1.125rem, 1.5vw, 1.25rem);
+    --step-2: clamp(1.0625rem, 1.4vw, 1.25rem);
+    --step-3: clamp(1.75rem, 3.6vw, 2.75rem);
+    --step-4: clamp(1.875rem, 4.6vw, 3.5rem);
+
+    --gutter: clamp(1.25rem, 4vw, 2.5rem);
+    --focus: var(--ink);
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  [id] { scroll-margin-top: 1rem; }
+
+  body {
+    margin: 0;
+    background: var(--white);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Krona One ships in a single weight, so keep headings at 400 to avoid faux bold. */
+  h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 400; letter-spacing: -0.01em; line-height: 1.15; text-wrap: balance; }
+  h1 { font-size: var(--step-4); line-height: 1.1; }
+  h2 { font-size: var(--step-3); }
+  h3 { font-size: var(--step-2); line-height: 1.25; }
+  p { margin: 0; text-wrap: balance; }
+  a { color: inherit; }
+
+  :focus-visible { outline: 4px solid var(--focus); outline-offset: 3px; }
+
+  /* One centered column: every block sits on the page's vertical center line. */
+  .wrap { width: min(100% - 2 * var(--gutter), 72rem); margin-inline: auto; }
+  .muted { color: var(--text-muted); max-width: 52ch; margin: 1.25rem auto 0; }
+
+  .skip {
+    position: absolute; left: 50%; top: -5rem; z-index: 50; transform: translateX(-50%);
+    background: var(--ink); color: var(--white);
+    padding: 0.75rem 1rem; border: var(--bw) solid var(--lime); text-decoration: none; font-weight: 600;
+  }
+  .skip:focus { top: 1rem; }
+
+  /* ---------- Buttons ---------- */
+  .button {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 3.25rem; padding: 0.6rem 1.6rem;
+    border: 3px solid var(--ink); border-radius: 0.75rem;
+    font: 600 1rem/1.2 var(--body); text-decoration: none; cursor: pointer;
+    color: var(--ink); background: var(--white);
+    box-shadow: 0 4px 0 var(--ink);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .button:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--ink); }
+  .button:active { transform: translateY(4px); box-shadow: 0 0 0 var(--ink); }
+  .button--primary { background: var(--lime); }
+  .button--small { min-height: 2.75rem; padding: 0.35rem 1.25rem; box-shadow: 0 3px 0 var(--ink); }
+  .button--small:hover { transform: translateY(1px); box-shadow: 0 2px 0 var(--ink); }
+  .button--small:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+  @media (prefers-reduced-motion: reduce) {
+    .button { transition: none; }
+    .button:hover, .button:active { transform: none; }
+  }
+
+  /* ---------- Header: logo on top, links centered underneath ---------- */
+  .site-header { background: var(--white); border-bottom: var(--bw) solid var(--ink); }
+  .header-inner {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.9rem; padding-block: 1.25rem 1.5rem;
+  }
+  .brand { display: inline-flex; align-items: center; line-height: 0; }
+  .brand img { display: block; height: 2.4rem; width: auto; }
+
+  .nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem 1.75rem; }
+  .nav a:not(.button) { font-weight: 500; text-decoration: none; padding-block: 0.25rem; }
+  .nav a:not(.button):hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 0.3em; }
+
+  /* ---------- Bands ---------- */
+  main > section + section { border-top: var(--bw) solid var(--ink); }
+  .section { padding-block: clamp(4rem, 9vw, 7rem); }
+  .section--lime { background: var(--lime); }
+  .section--lime .muted { color: var(--ink); }
+
+  /* Your lattice artwork, used full-bleed behind the first and last bands. */
+  .lattice {
+    background: var(--lime) url("images/hero-lattice.webp") center / cover no-repeat;
+  }
+
+  .panel {
+    width: 100%; max-width: 42rem; margin-inline: auto;
+    background: var(--white);
+    border: var(--bw) solid var(--ink);
+    box-shadow: var(--shadow);
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.25rem; margin-top: 2rem; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    display: flex; align-items: center; justify-content: center;
+    min-height: min(44rem, calc(100svh - 7.5rem));
+    padding-block: clamp(3rem, 8vw, 6rem);
+  }
+  .hero .lede { margin: 1.5rem auto 0; font-size: var(--step-1); max-width: 40ch; }
+
+  /* ---------- Shared section heading ---------- */
+  .section-head { max-width: 40rem; margin-inline: auto; }
+
+  /* ---------- Services ---------- */
+  .services {
+    list-style: none; margin: 3rem auto 0; padding: 0;
+    max-width: 52rem;
+    display: grid; gap: var(--bw);
+    background: var(--ink); border: var(--bw) solid var(--ink);
+    box-shadow: var(--shadow);
+  }
+  @media (min-width: 720px) { .services { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .service { background: var(--white); padding: clamp(1.5rem, 3vw, 2.25rem); }
+  .service h3 { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+  .service h3::before {
+    content: ""; flex: none; width: 0.9rem; height: 0.9rem;
+    background: var(--lime); border: 3px solid var(--ink);
+    transform: rotate(45deg);
+  }
+  .service p { color: var(--text-muted); max-width: 30ch; margin-inline: auto; }
+
+  /* ---------- Process ---------- */
+  .steps {
+    list-style: none; margin: 5rem auto 0; padding: 0; max-width: 64rem;
+    display: grid; gap: 4.5rem 2.5rem;
+  }
+  @media (min-width: 600px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .step { position: relative; border-top: var(--bw) solid var(--ink); padding-top: 2.75rem; }
+  .step::before {
+    content: ""; position: absolute; left: 50%; top: 0;
+    width: 2.75rem; height: 2.75rem;
+    background: var(--white); border: var(--bw) solid var(--ink);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  .step__n {
+    position: absolute; left: 50%; top: 0; width: 2.75rem; height: 2.75rem;
+    display: grid; place-items: center; transform: translate(-50%, -50%);
+    font-family: var(--display); font-size: 1rem; line-height: 1;
+  }
+  .step h3 { margin-bottom: 0.6rem; }
+  .step p { max-width: 28ch; margin-inline: auto; }
+
+  /* ---------- About ---------- */
+  .about { max-width: 44rem; }
+  .about .muted { font-size: var(--step-1); }
+  .principles {
+    list-style: none; margin: 3rem 0 0; padding: 0;
+    background: var(--lime); border: var(--bw) solid var(--ink); box-shadow: var(--shadow);
+  }
+  .principles li { padding: 1.5rem clamp(1.5rem, 3vw, 2rem); }
+  .principles li + li { border-top: var(--bw) solid var(--ink); }
+  .principles h3 { margin-bottom: 0.4rem; }
+
+  /* ---------- Contact ---------- */
+  .cta .panel { max-width: 44rem; }
+  .cta .muted { font-size: var(--step-1); color: var(--ink); }
+  .cta .address { font-weight: 500; text-underline-offset: 0.3em; text-decoration-thickness: 2px; overflow-wrap: anywhere; }
+
+  /* ---------- Footer: stacked lines, all centered ---------- */
+  .site-footer {
+    --focus: var(--lime);
+    background: var(--ink); color: var(--white);
+    padding-block: 2.5rem 2.75rem; font-size: 0.9375rem;
+  }
+  .footer-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.25rem; }
+  .site-footer .brand img { height: 1.9rem; }
+  .footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.75rem; }
+  .footer-nav a { text-decoration: none; }
+  .footer-nav a:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 0.3em; text-decoration-color: var(--lime); }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="EmeraldCompany home">
+      <img src="images/logo.png" alt="EmeraldCompany" width="1000" height="166">
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">What We Make</a>
+      <a href="#contact">Contact</a>
+      <a class="button button--primary button--small" href="#about">About Us</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero lattice" id="top">
+    <div class="wrap">
+      <div class="panel">
+        <h2>Welcome, To The EmeraldCompany Website!</h2>
+        <p class="lede">Start By Pressing The Button Below</p>
+        <div class="actions">
+          <a class="button button--primary" href="navigation.html">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What We Make</h2>
+        <p class="muted">This Is What We Make:</p>
+      </div>
+      <ul class="services" role="list">
+        <li class="service">
+          <h3>Media</h3>
+          <p>We Make Content On Social Media</p>
+        </li>
+        <li class="service">
+          <h3>Interactive ARGS</h3>
+          <p>We Make ARGs [Alternate Reality Games] That May Or May Not Contain Horror</p>
+        </li>
+        <li class="service">
+          <h3>Brand and design</h3>
+          <p><span id="imsogreen">IMSOOOOOGREEN</span></p>
+        </li>
+        <li class="service">
+          <h3>Placeholder</h3>
+          <p>To Be Changed, Eventually.....</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+ <section class="section lattice cta" id="contact">
+    <div class="wrap">
+      <div class="panel">
+        <h2>Contact Us.</h2>
+        <p class="muted">We Use Proton :P</p>
+        <p class="muted">PLEASE NOTE THAT THIS EMAIL IS FOR BUSINESS INQUIRIES ONLY</p>
+        <div class="actions">
+          <a class="button button--primary" href="mailto:emeraldcompany@protonmail.com?subject=New%20project%20enquiry">Email us</a>
+          <a class="address" href="mailto:emeraldcompany@protonmail.com">emeraldcompany@protonmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <a class="brand" href="#top" aria-label="EmeraldCompany, back to top">
+      <img src="images/logo.png" alt="EmeraldCompany" width="1000" height="166">
+    </a>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p>&copy; <span id="year">2026</span> EmeraldCompany</p>
+  <div>Made By <img src="images/DMCTG LOGO (PNG).png" alt="EmeraldCompany" width="200" height="14"></div>
+</div>
+  </footer>
+
+<script>
+  var year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+
+  /* Hovering "IMSOOOOGREEN" plays the audio clip. */
+  var greenAudio = new Audio('https://file.garden/assMXq6Leqme0FnX/IMSOGREEN.mp3');
+  greenAudio.preload = 'auto';
+
+  var greenText = document.getElementById('imsogreen');
+  if (greenText) {
+    greenText.addEventListener('mouseenter', function () {
+      greenAudio.currentTime = 0;
+      var attempt = greenAudio.play();
+      /* Browsers can refuse audio before the visitor has clicked or tapped the page; ignore that quietly. */
+      if (attempt && typeof attempt.catch === 'function') attempt.catch(function () {});
+    });
+  }
+</script>
+</body>
+</html>
