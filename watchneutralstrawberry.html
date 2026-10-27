@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmCo - NS</title>
-    
-</head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Video Card</title>
 <style>
 body {
   background-image: url('images/meat-cropped.png');
@@ -22,6 +17,57 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* leave room for the fixed navbar so it never covers the card */
+  padding-top: 72px;
+  box-sizing: border-box;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.55);
+  border-bottom: 1px solid rgb(0, 255, 55);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.navbar span {
+  background: linear-gradient(to bottom, #e3e3e3, #eeeeee);
+  margin: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid rgb(0, 255, 55);
+  padding: 2px;
+}
+
+.manual-link {
+  align-items: center;
+}
+
+.SelectedTab {
+  border: 3px solid rgb(0, 255, 55);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* 500 x 500 square, split top / bottom */
@@ -84,6 +130,17 @@ body {
 </head>
 <body>
 
+  <!-- NavBar -->
+  <div class="navbar">
+      <div class="navbar-left">
+          <a href="navigation.html"><img src="images/logo.png" height="40px"></a>
+          <span><a onclick="tba()">Main</a></span>
+          <span class="SelectedTab"><a href="neutralstrawberry.html">Episodes</a></span>
+          <span><a onclick="tba()">Characters</a></span>
+      </div>
+      <span class="navbar-right manual-link"><a onclick="tba()">TBA</a></span>
+  </div>
+
   <div class="card">
     <div class="video">
       <iframe
@@ -102,6 +159,13 @@ body {
   </div>
 
 <script>
+function wip() {
+ alert("This Feature Is Still A Work In Progress")
+}
+function tba() {
+ alert("This Feature Will Come In A Future Update")
+}
+
 /* ------------------------------------------------------------
    HOW IT WORKS
    watch?id=1  ->  the iframe loads the src (web address) of entry "1" below
