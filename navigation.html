@@ -63,6 +63,23 @@
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
         }
 
+        /* Text sits directly below the icons without shifting them */
+        .stage .below {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            margin: 24px 0 0;
+            padding: 0 20px;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+            font-size: clamp(1rem, 2vw, 1.75rem);
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
         .icons {
             display: flex;
             flex-wrap: wrap;
@@ -85,13 +102,20 @@
             z-index: 1;
         }
 
-        /* On small screens the icons wrap, so let the heading flow normally */
+        /* On small screens the icons wrap, so let the heading and text flow normally */
         @media (max-width: 700px) {
             .stage h1 {
                 position: static;
                 transform: none;
                 width: auto;
                 margin-bottom: 24px;
+            }
+
+            .stage .below {
+                position: static;
+                transform: none;
+                width: auto;
+                margin-top: 24px;
             }
         }
     </style>
@@ -113,6 +137,8 @@
             <a href="neutralstrawberry.html"><img id="two" src="images/neural-strawberry-icon.png" alt="Subject two"></a>
             <a href="index.html"><img id="three" src="images/WiiU-Icon.png" alt="Subject three"></a>
         </div>
+
+        <p class="below">Your text here</p>
     </main>
 </body>
 </html>
